@@ -34,7 +34,13 @@ export function LessonPlayer({ lessonId }: { lessonId: number }) {
         setHearts(res.hearts);
         setHeartsLocally(res.hearts);
       })
-      .catch((e) => setError(e.message))
+      .catch((e) => {
+        if (e.message && e.message.includes("Out of hearts")) {
+          setOutOfHearts(true);
+        } else {
+          setError(e.message);
+        }
+      })
       .finally(() => setLoading(false));
   }, [lessonId, setHeartsLocally]);
 
@@ -43,7 +49,7 @@ export function LessonPlayer({ lessonId }: { lessonId: number }) {
     const exercise = exercises[index];
     const res = await api.submitAnswer({ attempt_id: attemptId, exercise_id: exercise.id, answer });
     setHearts(res.hearts_remaining);
-    setHeartsLocally(res.hearts_remaining); // instantly reflected in TopBar
+    setHeartsLocally(res.hearts_remaining);
     setFeedback({ correct: res.correct, correctAnswer: res.correct_answer });
     if (res.out_of_hearts) {
       setOutOfHearts(true);
@@ -56,15 +62,15 @@ export function LessonPlayer({ lessonId }: { lessonId: number }) {
       if (!attemptId) return;
       const result = await api.completeLesson(attemptId);
       setCompleteResult(result);
-      await refreshUser(); // pulls fresh XP/streak/gems from the server after completion
+      await refreshUser();
     } else {
       setIndex((i) => i + 1);
     }
   }
 
   if (loading) return <div className="p-8 text-center font-bold text-gray-400 dark:text-gray-500">Loading lesson…</div>;
-  if (error) return <div className="p-8 text-center font-bold text-duo-red">{error}</div>;
   if (outOfHearts) return <OutOfHeartsModal />;
+  if (error) return <div className="p-8 text-center font-bold text-duo-red">{error}</div>;
   if (completeResult) return <LessonCompleteModal result={completeResult} />;
   if (exercises.length === 0) return <div className="p-8 text-center dark:text-gray-300">No exercises found.</div>;
 
