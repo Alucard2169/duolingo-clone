@@ -22,7 +22,7 @@ class User(Base):
 
     gems: Mapped[int] = mapped_column(Integer, default=0)
     daily_xp_goal: Mapped[int] = mapped_column(Integer, default=20)
-
+    daily_xp_earned: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     skill_progress: Mapped[list["UserSkillProgress"]] = relationship(

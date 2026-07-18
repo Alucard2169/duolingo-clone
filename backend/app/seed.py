@@ -37,14 +37,22 @@ def seed():
             current_xp=150,
             streak_count=3,
             last_activity_date=date.today() - timedelta(days=1),
-            hearts=4,
+            hearts=5,
             max_hearts=5,
             gems=50,
             daily_xp_goal=20,
         )
         db.add(user)
         db.commit()
-        db.refresh(user)
+        db.refresh(user)# --- Additional seeded users for a populated leaderboard ---
+        other_learners = [
+            User(username="maria_g", current_xp=420, streak_count=12, gems=80, hearts=5, max_hearts=5),
+            User(username="carlos_r", current_xp=310, streak_count=5, gems=60, hearts=3, max_hearts=5),
+            User(username="aisha_k", current_xp=275, streak_count=8, gems=45, hearts=5, max_hearts=5),
+            User(username="tom_b", current_xp=90, streak_count=1, gems=15, hearts=4, max_hearts=5),
+        ]
+        db.add_all(other_learners)
+        db.commit()
 
         # --- Course ---
         course = Course(name="Spanish", language_code="es")
@@ -232,9 +240,9 @@ def seed():
 
         print("Seed complete:")
         print(f"  User: {user.username} (id={user.id})")
-        print(f"  Course: {course.name} with {len([unit1, unit2])} units, 4 skills, 4 lessons")
+        print(f"  Additional leaderboard users: {len(other_learners)}")
+        print(f"  Course: {course.name} with 2 units, 4 skills, 4 lessons")
         print(f"  Achievements: {len(achievements)}")
-
     finally:
         db.close()
 

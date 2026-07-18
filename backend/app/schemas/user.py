@@ -13,6 +13,7 @@ class UserOut(BaseModel):
     next_heart_at: datetime | None
     gems: int
     daily_xp_goal: int
+    daily_xp_earned: int
 
     class Config:
         from_attributes = True

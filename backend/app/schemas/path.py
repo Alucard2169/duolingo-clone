@@ -9,6 +9,7 @@ class SkillOut(BaseModel):
     total_levels: int
     status: str          # locked | available | completed
     crowns: int
+    first_lesson_id: int | None = None 
 
     class Config:
         from_attributes = True
