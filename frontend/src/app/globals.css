@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  --color-duo-green: #58cc02;
+  --color-duo-green-dark: #4bb800;
+  --color-duo-blue: #1cb0f6;
+  --color-duo-blue-dark: #14a3e8;
+  --color-duo-red: #ff4b4b;
+  --color-duo-red-dark: #ea2b2b;
+  --color-duo-yellow: #ffc800;
+  --color-duo-yellow-dark: #ffa700;
+  --color-duo-purple: #ce82ff;
+  --color-duo-purple-dark: #a568cc;
+  --color-duo-gray: #e5e5e5;
+  --color-duo-gray-dark: #afafaf;
+  --color-duo-text-gray: #777777;
+  --color-duo-text: #3c3c3c;
+  --color-duo-bg: #ffffff;
+  --color-duo-eel: #4b4b4b;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-duo: "Nunito", "Segoe UI", sans-serif;
+  --radius-duo: 16px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-duo);
+  color: var(--color-duo-text);
+  background-color: #f7f7f7;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dark body {
+  background-color: #131f24;
+  color: #e5e5e5;
+}
+
+.btn-duo {
+  border-radius: 16px;
+  border-bottom-width: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: transform 0.05s ease, border-bottom-width 0.05s ease, margin-top 0.05s ease;
+}
+.btn-duo:active:not(:disabled) {
+  border-bottom-width: 0px;
+  margin-top: 4px;
+}
+.btn-duo:disabled {
+  opacity: 1;
+  filter: grayscale(0.3);
+  cursor: not-allowed;
 }
