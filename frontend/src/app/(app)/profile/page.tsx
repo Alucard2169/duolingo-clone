@@ -1,4 +1,6 @@
+
 import { api } from "@/lib/api";
+export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
   const [user, achievements] = await Promise.all([api.getMe(), api.getAchievements()]);

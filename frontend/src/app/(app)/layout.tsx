@@ -1,8 +1,12 @@
+
 import { api } from "@/lib/api";
 import { TopBar } from "@/components/TopBar";
 import { BottomNav } from "@/components/BottomNav";
 import { SideNav } from "@/components/SideNav";
 import { UserProvider } from "@/lib/user-context";
+
+export const dynamic = "force-dynamic";
+
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const user = await api.getMe();

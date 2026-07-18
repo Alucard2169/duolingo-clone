@@ -1,6 +1,8 @@
+
 import { api } from "@/lib/api";
 import { SkillNode } from "@/components/SkillNode";
 import { DailyGoal } from "@/components/DailyGoal";
+export const dynamic = "force-dynamic";
 
 const ALIGN_CYCLE: Array<"left" | "center" | "right"> = ["center", "left", "right", "left"];
 
