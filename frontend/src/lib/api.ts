@@ -60,6 +60,7 @@ export interface SkillOut {
   total_levels: number;
   status: "locked" | "available" | "completed";
   crowns: number;
+  first_lesson_id: number | null;
 }
 
 export interface UnitOut {
