@@ -13,7 +13,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <UserProvider initialUser={user}>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="min-h-screen overflow-x-hidden bg-gray-50 dark:bg-gray-950">
         <TopBar />
         <SideNav />
         <main className="mx-auto max-w-4xl px-4 py-6 pb-24 sm:pb-6 sm:pl-60 sm:pr-8">{children}</main>
