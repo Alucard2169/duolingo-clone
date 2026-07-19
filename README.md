@@ -13,6 +13,8 @@ A functional clone of Duolingo's core learning loop and gamification mechanics â
 - **Database:** SQLite
 - **Deployment:** Netlify (frontend), Render (backend)
 
+![homepage](https://github.com/Alucard2169/duolingo-clone/blob/main/homepage.png?raw=true)
+
 ## Setup Instructions (local development)
 
 ### Backend
